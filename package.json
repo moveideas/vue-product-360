@@ -1,0 +1,51 @@
+{
+    "name": "vue-product-carousel",
+    "version": "1.0.0",
+    "description": "",
+    "author": {
+        "name": "Jean-Baptiste Fournot",
+        "email": "jb@deviz.net",
+        "url": "https://deviz.net"
+    },
+    "homepage": "https://github.com/deviznet/vue-product-carousel#readme",
+    "bugs": {
+        "url": "https://github.com/deviznet/vue-product-carousel/issues"
+    },
+    "keywords": [
+        "vue",
+        "vuejs",
+        "carousel",
+        "360",
+        "products",
+        "dragdrop"
+    ],
+    "main": "app.js",
+    "scripts": {
+        "serve": "vue-cli-service serve --open",
+        "build": "vue-cli-service build --target lib --name VueProductCarousel ./src/main.js",
+        "build:demo": "vue-cli-service build --dest demo",
+        "lint": "vue-cli-service lint",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/deviznet/vue-product-carousel.git"
+    },
+    "dependencies": {
+        "vue": "^2.6.11"
+    },
+    "devDependencies": {
+        "@vue/babel-preset-app": "^4.3.1",
+        "@vue/cli-plugin-eslint": "^4.3.1",
+        "@vue/cli-plugin-unit-jest": "^4.3.1",
+        "@vue/cli-plugin-unit-mocha": "^4.3.1",
+        "@vue/cli-service": "^4.3.1",
+        "@vue/test-utils": "^1.0.0-beta.33",
+        "babel-jest": "^25.5.1",
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb-base": "^14.1.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-vue": "^6.2.2",
+        "vue-template-compiler": "^2.6.11"
+    }
+}
