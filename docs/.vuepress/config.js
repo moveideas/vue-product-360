@@ -1,5 +1,8 @@
 module.exports = {
     base: '/vue-product-carousel/',
-    title: 'Hello VuePress',
-    description: 'Just playing around'
+    description: 'Just playing around',
+    themeConfig: {
+        navBar: false,
+        search: false
+    }
 }

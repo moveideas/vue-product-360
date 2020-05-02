@@ -1,7 +1,8 @@
 ---
 home: true
-heroText: A flexible product carousel for Vue.js
-tagline: I am a Remote Vue.js Developer and a Tech Blogger
+navbar: false
+heroText: A flexible 360 carousel in Vue.js
+tagline: Loop a series of images in a 360 rotatation carousel with this plugin for Vue.js
 actionText: Get started →
 actionLink: /guide/
 features:
@@ -13,3 +14,32 @@ features:
     details: Travelling is my favourite activity, I am an avid hiker and backpacker
 footer: Notes
 ---
+
+<TestComponent></TestComponent>
+
+## Installation
+
+Installing with npm is recommended and it works seamlessly with webpack.
+
+``` js
+npm install test
+```
+
+## Usage
+
+``` js
+import VueProductCarousel from 'vue-product-carousel';
+
+export default {
+  data: ({
+    images: ['/img1.png', '/img2.png', '/img3.png']
+  }),
+  components: {
+    VueProductCarousel
+  }
+};
+```
+
+``` html
+<vue-product-carousel :images="images"></vue-product-carousel>
+```
