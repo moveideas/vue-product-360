@@ -8,6 +8,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
       - name: NPM install 📦
         uses: bahmutov/npm-install@v1
       - name: Build site 🏗
