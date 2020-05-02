@@ -4,7 +4,7 @@
 
 <script>
 
-import VueProductCarousel from '../../../dist/VueProductCarousel.umd';
+import VueProductCarousel from './dist/VueProductCarousel.umd';
 
 export default {
     props: {
