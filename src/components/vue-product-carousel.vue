@@ -1,14 +1,19 @@
 <template>
-  <img
-    :src="carousel.currentPath" draggable="false"
-    @mouseup="handleMouseUp"
-    @mousedown="handleMouseDown"
-    @mousemove="handleMouseMove"
-    @mouseleave="handleMouseLeave"
-    @touchend="handleTouchEnd"
-    @touchstart="handleTouchStart"
-    @touchmove="handleTouchMove"
-  />
+  <div class="vue-product-carousel">
+    <template v-if="isLoaded">
+      <img
+        :src="carousel.currentPath" draggable="false"
+        @mouseup="handleMouseUp"
+        @mousedown="handleMouseDown"
+        @mousemove="handleMouseMove"
+        @mouseleave="handleMouseLeave"
+        @touchend="handleTouchEnd"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+      />
+    </template>
+    <slot v-else></slot>
+  </div>
 </template>
 
 <script>
