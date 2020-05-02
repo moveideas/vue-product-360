@@ -22,10 +22,11 @@
     "main": "app.js",
     "scripts": {
         "serve": "vue-cli-service serve --open",
-        "build": "vue-cli-service build --target lib --name VueProductCarousel ./src/main.js",
-        "build:demo": "vue-cli-service build --dest demo",
+        "build": "vue-cli-service build --target lib --name VueProductCarousel ./src/components/vue-product-carousel.vue",
         "lint": "vue-cli-service lint",
-        "test": "jest"
+        "test": "jest",
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs"
     },
     "repository": {
         "type": "git",
@@ -46,6 +47,7 @@
         "eslint-config-airbnb-base": "^14.1.0",
         "eslint-plugin-import": "^2.20.2",
         "eslint-plugin-vue": "^6.2.2",
-        "vue-template-compiler": "^2.6.11"
+        "vue-template-compiler": "^2.6.11",
+        "vuepress": "^1.4.1"
     }
 }

@@ -1,9 +1,10 @@
 <template>
   <img
-    :src="spinner.currentPath" draggable="false"
+    :src="carousel.currentPath" draggable="false"
     @mouseup="handleMouseUp"
     @mousedown="handleMouseDown"
     @mousemove="handleMouseMove"
+    @mouseleave="handleMouseLeave"
     @touchend="handleTouchEnd"
     @touchstart="handleTouchStart"
     @touchmove="handleTouchMove"
@@ -19,8 +20,8 @@ export default {
   props: {
     images: {
       type: Array,
-      default: () => [],
       required: true,
+      default: () => [],
     },
     speed: {
       type: Number,
@@ -34,42 +35,59 @@ export default {
       type: Boolean,
       default: true,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     isLoaded: false,
-    spinner: {
+    carousel: {
       current: 0,
       currentPath: null,
     },
     mouse: {
-      initialPosition: 0,
-      currentPosition: 0,
       isMoving: false,
+      savedPosition: 0,
+      currentPosition: 0,
     },
-    test: null,
   }),
   beforeMount() {
+    this.$emit('loading');
     ImagesLoader(this.images).then(() => {
       this.isLoaded = true;
+      this.$emit('loaded');
     });
   },
   created() {
-    this.spinner.currentPath = this.images[this.spinner.current];
+    this.carousel.currentPath = this.images[this.carousel.current];
   },
   methods: {
     handleMouseUp() {
       this.mouse.isMoving = false;
+      this.$emit('stopping');
+    },
+    handleMouseLeave() {
+      this.mouse.isMoving = false;
+      this.$emit('stopping');
     },
     handleMouseDown(event) {
-      this.mouse.initialPosition = event.pageX;
-      this.mouse.isMoving = true;
+      if (!this.disabled) {
+        this.mouse.savedPosition = event.pageX;
+        this.mouse.isMoving = true;
+        this.$emit('starting');
+      }
     },
     handleTouchStart(event) {
-      this.mouse.initialPosition = event.touches[0].pageX;
-      this.mouse.isMoving = true;
+      if (!this.disabled) {
+        this.mouse.savedPosition = event.touches[0].pageX;
+        this.mouse.isMoving = true;
+        this.$emit('starting');
+      }
     },
     handleTouchEnd() {
       this.mouse.isMoving = false;
+      this.$emit('stopping');
     },
     handleTouchMove(event) {
       this.handleMovement(event.touches[0].pageX);
@@ -80,25 +98,39 @@ export default {
     handleMovement(currentPosition) {
       if (this.mouse.isMoving) {
         this.mouse.currentPosition = currentPosition;
-        const distance = this.mouse.currentPosition - this.mouse.initialPosition;
+        const distance = this.mouse.currentPosition - this.mouse.savedPosition;
         if (Math.abs(distance) > this.speed) {
-          this.mouse.initialPosition = this.mouse.currentPosition;
+          this.mouse.savedPosition = this.mouse.currentPosition;
           if ((distance > 0 && !this.reverse) || (distance < 0 && this.reverse)) {
-            if (this.spinner.current < this.images.length) {
-              this.spinner.current += 1;
-              this.spinner.currentPath = this.images[this.spinner.current - 1];
-            } else {
-              this.spinner.current = 0;
-              this.spinner.currentPath = this.images[this.spinner.current];
-            }
-          } else if (this.spinner.current > 1) {
-            this.spinner.current -= 1;
-            this.spinner.currentPath = this.images[this.spinner.current - 1];
+            this.slideToRight();
           } else {
-            this.spinner.current = this.images.length;
-            this.spinner.currentPath = this.images[this.spinner.current - 1];
+            this.slideToLeft();
           }
         }
+      }
+    },
+    slideToRight() {
+      if (this.carousel.current < this.images.length) {
+        this.carousel.current += 1;
+        this.carousel.currentPath = this.images[this.carousel.current - 1];
+      } else if (this.infinite) {
+        this.carousel.current = 0;
+        this.carousel.currentPath = this.images[this.carousel.current];
+      }
+    },
+    slideToLeft() {
+      if (this.carousel.current > 1) {
+        this.carousel.current -= 1;
+        this.carousel.currentPath = this.images[this.carousel.current - 1];
+      } else if (this.infinite) {
+        this.carousel.current = this.images.length;
+        this.carousel.currentPath = this.images[this.carousel.current - 1];
+      }
+    },
+    slideTo(position) {
+      if (this.images[position]) {
+        this.carousel.current = position;
+        this.carousel.currentPath = this.images[this.carousel.current];
       }
     },
   },

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>Hello</h1>
-    <vue-product-carousel :images="images"></vue-product-carousel>
+    <vue-product-carousel class="tet" :infinite="false" :images="images"></vue-product-carousel>
   </div>
 </template>
 
