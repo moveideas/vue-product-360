@@ -48,7 +48,7 @@ yarn add vue-product-carousel
 
 | Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
-| images | `Array[String]` | `required` | `[]` | Array of images to be looped|
+| images | `Array[String]` | **required** | `[]` | Array of images to be looped|
 | speed | `Number` | optional | `10` | Rotation speed |
 | infinite | `Boolean` | optional | `true` | Infinite loop |
 | reverse | `Boolean` | optional | `false` | Change the rotation direction |
@@ -58,7 +58,7 @@ yarn add vue-product-carousel
 
 | Name | Description |
 |-|-|
-| loading | Images are downloading |
+| loading | Images are currently downloading |
 | loaded | All images are downloaded |
 | starting | The rotation started with the following events: mousedown or touchstart |
 | stopping | The rotation is stopped |
