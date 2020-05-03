@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: "vue-product-carousel"
+    publicPath: "/vue-product-carousel/"
 };
