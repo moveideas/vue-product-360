@@ -12,10 +12,10 @@ Quick start guide for installing and configuring the plugin
 
 ```sh
 # Using npm
-npm install vue-product-360
+npm install @deviznet/vue-product-360
 
 # Using yarn
-yarn add vue-product-360
+yarn add @deviznet/vue-product-360
 ```
 
 ## Usage

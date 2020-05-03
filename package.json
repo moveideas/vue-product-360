@@ -1,5 +1,5 @@
 {
-    "name": "vue-product-360",
+    "name": "@deviznet/vue-product-360",
     "version": "1.0.0",
     "description": "",
     "author": {
@@ -29,10 +29,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/deviznet/vue-product-360.git"
-    },
-    "publishConfig": { 
-        "registry": "https://npm.pkg.github.com/"
+        "url": "git://github.com/deviznet/vue-product-360.git"
     },
     "dependencies": {
         "vue": "^2.6.11"
