@@ -31,6 +31,9 @@
         "type": "git",
         "url": "https://github.com/deviznet/vue-product-carousel.git"
     },
+    "publishConfig": { 
+        "registry": "https://npm.pkg.github.com/"
+    },
     "dependencies": {
         "vue": "^2.6.11"
     },
