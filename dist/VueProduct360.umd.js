@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["VueProductCarousel"] = factory();
+		exports["VueProduct360"] = factory();
 	else
-		root["VueProductCarousel"] = factory();
+		root["VueProduct360"] = factory();
 })((typeof self !== 'undefined' ? self : this), function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -501,4 +501,4 @@ var component = normalizeComponent(
 
 /******/ })["default"];
 });
-//# sourceMappingURL=VueProductCarousel.umd.js.map
+//# sourceMappingURL=VueProduct360.umd.js.map

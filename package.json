@@ -19,10 +19,10 @@
         "products",
         "dragdrop"
     ],
-    "main": "app.js",
+    "main": "./dist/VueProduct360.common.js",
     "scripts": {
         "serve": "vue-cli-service serve --open",
-        "build": "vue-cli-service build --target lib --name VueProductCarousel ./src/components/vue-product-360.vue",
+        "build": "vue-cli-service build --target lib --name VueProduct360 ./src/components/vue-product-360.vue",
         "docs": "vue-cli-service build --dest docs",
         "lint": "vue-cli-service lint",
         "test": "jest"

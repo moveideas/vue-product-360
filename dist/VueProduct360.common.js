@@ -491,4 +491,4 @@ var component = normalizeComponent(
 /***/ })
 
 /******/ })["default"];
-//# sourceMappingURL=VueProductCarousel.common.js.map
+//# sourceMappingURL=VueProduct360.common.js.map
