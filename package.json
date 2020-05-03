@@ -23,10 +23,9 @@
     "scripts": {
         "serve": "vue-cli-service serve --open",
         "build": "vue-cli-service build --target lib --name VueProductCarousel ./src/components/vue-product-carousel.vue",
+        "docs": "vue-cli-service build --dest docs",
         "lint": "vue-cli-service lint",
-        "test": "jest",
-        "docs:dev": "vuepress dev docs --open",
-        "docs:build": "vuepress build docs"
+        "test": "jest"
     },
     "repository": {
         "type": "git",
@@ -48,6 +47,6 @@
         "eslint-plugin-import": "^2.20.2",
         "eslint-plugin-vue": "^6.2.2",
         "vue-template-compiler": "^2.6.11",
-        "vuepress": "^1.4.1"
+        "tailwindcss": "^1.4.4"
     }
 }

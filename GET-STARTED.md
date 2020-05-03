@@ -1,7 +1,7 @@
 ---
 home: true
 navbar: false
-heroText: A flexible 360 carousel in Vue.js
+heroText: A flexible 360 carousel for Vue.js
 tagline: Loop a series of images in a 360 rotatation carousel with this plugin for Vue.js
 actionText: Get started →
 actionLink: /guide/

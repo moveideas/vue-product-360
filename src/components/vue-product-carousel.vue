@@ -12,7 +12,7 @@
         @touchmove="handleTouchMove"
       />
     </template>
-    <slot v-else></slot>
+    <slot class="vue-product-carousel__loading" v-else></slot>
   </div>
 </template>
 
@@ -84,6 +84,7 @@ export default {
       }
     },
     handleTouchStart(event) {
+      event.preventDefault();
       if (!this.disabled) {
         this.mouse.savedPosition = event.touches[0].pageX;
         this.mouse.isMoving = true;
@@ -95,6 +96,7 @@ export default {
       this.$emit('stopping');
     },
     handleTouchMove(event) {
+      event.preventDefault();
       this.handleMovement(event.touches[0].pageX);
     },
     handleMouseMove(event) {
