@@ -1,5 +1,5 @@
 {
-    "name": "vue-product-carousel",
+    "name": "vue-product-360",
     "version": "1.0.0",
     "description": "",
     "author": {
@@ -7,9 +7,9 @@
         "email": "jb@deviz.net",
         "url": "https://deviz.net"
     },
-    "homepage": "https://github.com/deviznet/vue-product-carousel#readme",
+    "homepage": "https://github.com/deviznet/vue-product-360#readme",
     "bugs": {
-        "url": "https://github.com/deviznet/vue-product-carousel/issues"
+        "url": "https://github.com/deviznet/vue-product-360/issues"
     },
     "keywords": [
         "vue",
@@ -22,14 +22,14 @@
     "main": "app.js",
     "scripts": {
         "serve": "vue-cli-service serve --open",
-        "build": "vue-cli-service build --target lib --name VueProductCarousel ./src/components/vue-product-carousel.vue",
+        "build": "vue-cli-service build --target lib --name VueProductCarousel ./src/components/vue-product-360.vue",
         "docs": "vue-cli-service build --dest docs",
         "lint": "vue-cli-service lint",
         "test": "jest"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/deviznet/vue-product-carousel.git"
+        "url": "https://github.com/deviznet/vue-product-360.git"
     },
     "publishConfig": { 
         "registry": "https://npm.pkg.github.com/"
@@ -49,7 +49,6 @@
         "eslint-config-airbnb-base": "^14.1.0",
         "eslint-plugin-import": "^2.20.2",
         "eslint-plugin-vue": "^6.2.2",
-        "vue-template-compiler": "^2.6.11",
-        "tailwindcss": "^1.4.4"
+        "vue-template-compiler": "^2.6.11"
     }
 }

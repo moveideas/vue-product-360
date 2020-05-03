@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-product-carousel">
+  <div class="vue-product-360">
     <template v-if="isLoaded">
       <img
         :src="carousel.currentPath" draggable="false"
@@ -12,7 +12,7 @@
         @touchmove="handleTouchMove"
       />
     </template>
-    <slot class="vue-product-carousel__loading" v-else></slot>
+    <slot class="vue-product-360__loading" v-else></slot>
   </div>
 </template>
 
@@ -21,7 +21,7 @@
 import ImagesLoader from '../utils/ImagesLoader';
 
 export default {
-  name: 'vue-product-carousel',
+  name: 'vue-product-360',
   props: {
     images: {
       type: Array,

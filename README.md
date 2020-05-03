@@ -1,10 +1,10 @@
-# 🎆 Vue Product Carousel
+# 🎆 Vue Product 360
 
 Loop a series of images in a 360 rotatation carousel with this plugin for Vue.js
 
 ![Demo Screenshot](./public/demo-screenshot.gif)
 
-[▶️ Try the demo](https://deviznet.github.io/vue-product-carousel/) or
+[▶️ Try the demo](https://deviznet.github.io/vue-product-360/) or
 [▶️ Start a sandbox (soon)]()
 
 ## Installation
@@ -12,23 +12,23 @@ Quick start guide for installing and configuring the plugin
 
 ```sh
 # Using npm
-npm install vue-product-carousel
+npm install vue-product-360
 
 # Using yarn
-yarn add vue-product-carousel
+yarn add vue-product-360
 ```
 
 ## Usage
 
 ```html
 <template>
-  <VueProductCarousel :images="images">
+  <VueProduct360 :images="images">
     <p>Loading</p>
-  </VueProductCarousel>
+  </VueProduct360>
 </template>
 
 <script>
-  import VueProductCarousel from 'vue-product-carousel'
+  import VueProduct360 from 'vue-product-360'
 
   export default {
     data() {
@@ -37,7 +37,7 @@ yarn add vue-product-carousel
       },
     },
     components: {
-      VueProductCarousel,
+      VueProduct360,
     },
   };
 </script>

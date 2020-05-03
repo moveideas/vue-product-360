@@ -1,10 +1,10 @@
 import { shallowMount } from "@vue/test-utils";
-import VueProductCarousel from '@/components/vue-product-carousel.vue';
+import VueProduct360 from '@/components/vue-product-360.vue';
 
 describe("Mounting the component", () => {
   it("The first image needs to be loaded", () => {
     const images = ['image1', 'image2', 'image3']
-    const wrapper =  shallowMount(VueProductCarousel, {
+    const wrapper =  shallowMount(VueProduct360, {
       propsData: { images }
     });
     expect(wrapper.vm.carousel.current).toBe(0);
