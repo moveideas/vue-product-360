@@ -2,7 +2,9 @@
   <div class="vue-product-360">
     <template v-if="isLoaded">
       <img
-        :src="carousel.currentPath" draggable="false"
+        draggable="false"
+        :src="carousel.currentPath"
+        :class="imageClass"
         @mouseup="handleMouseUp"
         @mousedown="handleMouseDown"
         @mousemove="handleMouseMove"
@@ -28,6 +30,10 @@ export default {
       required: true,
       default: () => [],
     },
+    imageClass: {
+      type: String,
+      default: null,
+    },
     speed: {
       type: Number,
       default: 10,
@@ -44,6 +50,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    keepPosition: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: () => ({
     isLoaded: false,
@@ -59,8 +69,7 @@ export default {
   }),
   beforeMount() {
     this.$emit('loading');
-    ImagesLoader(this.images).then(() => {
-      this.isLoaded = true;
+    this.handleLoading().then(() => {
       this.$emit('loaded');
     });
   },
@@ -68,13 +77,20 @@ export default {
     this.carousel.currentPath = this.images[this.carousel.current];
   },
   methods: {
+    handleLoading() {
+      return ImagesLoader(this.images).then(() => {
+        this.isLoaded = true;
+      });
+    },
     handleMouseUp() {
       this.mouse.isMoving = false;
       this.$emit('stopping', { position: this.carousel.current });
     },
     handleMouseLeave() {
-      this.mouse.isMoving = false;
-      this.$emit('stopping', { position: this.carousel.current });
+      if (this.mouse.isMoving) {
+        this.mouse.isMoving = false;
+        this.$emit('stopping', { position: this.carousel.current });
+      }
     },
     handleMouseDown(event) {
       if (!this.disabled) {
@@ -137,8 +153,24 @@ export default {
     slideTo(position) {
       if (this.images[position]) {
         this.carousel.current = position;
-        this.carousel.currentPath = this.images[this.carousel.current];
+        this.carousel.currentPath = this.images[position === 0 ? position : position - 1];
       }
+    },
+  },
+  watch: {
+    images: {
+      handler() {
+        this.$emit('refreshing');
+        this.handleLoading().then(() => {
+          const positionExist = this.images[this.carousel.current];
+          if (this.keepPosition && positionExist) {
+            this.slideTo(this.carousel.current);
+          } else {
+            this.slideTo(0);
+          }
+          this.$emit('refreshed');
+        });
+      },
     },
   },
 };
