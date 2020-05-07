@@ -13,6 +13,7 @@
     <vue-product-360
      :reverse="true"
      :images="images"
+     @stopping="setPosition"
      class="flex justify-center w-2/3 mb-20 mx-auto cursor-move">
     </vue-product-360>
     <section class="pt-20 border-t border-gray-300" id="started">
@@ -56,6 +57,11 @@ export default {
     for (let index = 1; index <= 25; index += 1) {
       this.images.push(`img/${index}.png`);
     }
+  },
+  methods: {
+    setPosition(event) {
+      console.log(event);
+    },
   },
   components: {
     VueProduct360,

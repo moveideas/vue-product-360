@@ -53,8 +53,8 @@ export default {
     },
     mouse: {
       isMoving: false,
-      savedPosition: 0,
-      currentPosition: 0,
+      savedPositionX: 0,
+      currentPositionX: 0,
     },
   }),
   beforeMount() {
@@ -70,23 +70,23 @@ export default {
   methods: {
     handleMouseUp() {
       this.mouse.isMoving = false;
-      this.$emit('stopping');
+      this.$emit('stopping', { position: this.carousel.current });
     },
     handleMouseLeave() {
       this.mouse.isMoving = false;
-      this.$emit('stopping');
+      this.$emit('stopping', { position: this.carousel.current });
     },
     handleMouseDown(event) {
       if (!this.disabled) {
-        this.mouse.savedPosition = event.pageX;
+        this.mouse.savedPositionX = event.pageX;
         this.mouse.isMoving = true;
-        this.$emit('starting');
+        this.$emit('starting', { position: this.carousel.current });
       }
     },
     handleTouchStart(event) {
       event.preventDefault();
       if (!this.disabled) {
-        this.mouse.savedPosition = event.touches[0].pageX;
+        this.mouse.savedPositionX = event.touches[0].pageX;
         this.mouse.isMoving = true;
         this.$emit('starting');
       }
@@ -104,10 +104,10 @@ export default {
     },
     handleMovement(currentPosition) {
       if (this.mouse.isMoving) {
-        this.mouse.currentPosition = currentPosition;
-        const distance = this.mouse.currentPosition - this.mouse.savedPosition;
+        this.mouse.currentPositionX = currentPosition;
+        const distance = this.mouse.currentPositionX - this.mouse.savedPositionX;
         if (Math.abs(distance) > this.speed) {
-          this.mouse.savedPosition = this.mouse.currentPosition;
+          this.mouse.savedPositionX = this.mouse.currentPositionX;
           if ((distance > 0 && !this.reverse) || (distance < 0 && this.reverse)) {
             this.slideToRight();
           } else {
