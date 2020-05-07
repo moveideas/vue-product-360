@@ -205,12 +205,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"43904d80-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-product-360.vue?vue&type=template&id=2157814c&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d21f2fda-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-product-360.vue?vue&type=template&id=a6b26dd0&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-product-360"},[(_vm.isLoaded)?[_c('img',{attrs:{"src":_vm.carousel.currentPath,"draggable":"false"},on:{"mouseup":_vm.handleMouseUp,"mousedown":_vm.handleMouseDown,"mousemove":_vm.handleMouseMove,"mouseleave":_vm.handleMouseLeave,"touchend":_vm.handleTouchEnd,"touchstart":_vm.handleTouchStart,"touchmove":_vm.handleTouchMove}})]:_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/vue-product-360.vue?vue&type=template&id=2157814c&
+// CONCATENATED MODULE: ./src/components/vue-product-360.vue?vue&type=template&id=a6b26dd0&
 
 // CONCATENATED MODULE: ./src/utils/ImagesLoader.js
 function ImagesLoader(images) {
@@ -283,8 +283,8 @@ function ImagesLoader(images) {
     },
     mouse: {
       isMoving: false,
-      savedPosition: 0,
-      currentPosition: 0,
+      savedPositionX: 0,
+      currentPositionX: 0,
     },
   }),
   beforeMount() {
@@ -300,23 +300,23 @@ function ImagesLoader(images) {
   methods: {
     handleMouseUp() {
       this.mouse.isMoving = false;
-      this.$emit('stopping');
+      this.$emit('stopping', { position: this.carousel.current });
     },
     handleMouseLeave() {
       this.mouse.isMoving = false;
-      this.$emit('stopping');
+      this.$emit('stopping', { position: this.carousel.current });
     },
     handleMouseDown(event) {
       if (!this.disabled) {
-        this.mouse.savedPosition = event.pageX;
+        this.mouse.savedPositionX = event.pageX;
         this.mouse.isMoving = true;
-        this.$emit('starting');
+        this.$emit('starting', { position: this.carousel.current });
       }
     },
     handleTouchStart(event) {
       event.preventDefault();
       if (!this.disabled) {
-        this.mouse.savedPosition = event.touches[0].pageX;
+        this.mouse.savedPositionX = event.touches[0].pageX;
         this.mouse.isMoving = true;
         this.$emit('starting');
       }
@@ -334,10 +334,10 @@ function ImagesLoader(images) {
     },
     handleMovement(currentPosition) {
       if (this.mouse.isMoving) {
-        this.mouse.currentPosition = currentPosition;
-        const distance = this.mouse.currentPosition - this.mouse.savedPosition;
+        this.mouse.currentPositionX = currentPosition;
+        const distance = this.mouse.currentPositionX - this.mouse.savedPositionX;
         if (Math.abs(distance) > this.speed) {
-          this.mouse.savedPosition = this.mouse.currentPosition;
+          this.mouse.savedPositionX = this.mouse.currentPositionX;
           if ((distance > 0 && !this.reverse) || (distance < 0 && this.reverse)) {
             this.slideToRight();
           } else {
