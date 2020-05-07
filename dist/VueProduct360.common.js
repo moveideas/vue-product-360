@@ -196,12 +196,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d21f2fda-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-product-360.vue?vue&type=template&id=a6b26dd0&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-product-360"},[(_vm.isLoaded)?[_c('img',{attrs:{"src":_vm.carousel.currentPath,"draggable":"false"},on:{"mouseup":_vm.handleMouseUp,"mousedown":_vm.handleMouseDown,"mousemove":_vm.handleMouseMove,"mouseleave":_vm.handleMouseLeave,"touchend":_vm.handleTouchEnd,"touchstart":_vm.handleTouchStart,"touchmove":_vm.handleTouchMove}})]:_vm._t("default")],2)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d21f2fda-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-product-360.vue?vue&type=template&id=26e0906a&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-product-360"},[(_vm.isLoaded)?[_c('img',{class:_vm.imageClass,attrs:{"draggable":"false","src":_vm.carousel.currentPath},on:{"mouseup":_vm.handleMouseUp,"mousedown":_vm.handleMouseDown,"mousemove":_vm.handleMouseMove,"mouseleave":_vm.handleMouseLeave,"touchend":_vm.handleTouchEnd,"touchstart":_vm.handleTouchStart,"touchmove":_vm.handleTouchMove}})]:_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/vue-product-360.vue?vue&type=template&id=a6b26dd0&
+// CONCATENATED MODULE: ./src/components/vue-product-360.vue?vue&type=template&id=26e0906a&
 
 // CONCATENATED MODULE: ./src/utils/ImagesLoader.js
 function ImagesLoader(images) {
@@ -237,6 +237,8 @@ function ImagesLoader(images) {
 //
 //
 //
+//
+//
 
 
 
@@ -248,6 +250,10 @@ function ImagesLoader(images) {
       type: Array,
       required: true,
       default: () => [],
+    },
+    imageClass: {
+      type: String,
+      default: null,
     },
     speed: {
       type: Number,
@@ -265,6 +271,10 @@ function ImagesLoader(images) {
       type: Boolean,
       default: false,
     },
+    keepPosition: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: () => ({
     isLoaded: false,
@@ -280,8 +290,7 @@ function ImagesLoader(images) {
   }),
   beforeMount() {
     this.$emit('loading');
-    ImagesLoader(this.images).then(() => {
-      this.isLoaded = true;
+    this.handleLoading().then(() => {
       this.$emit('loaded');
     });
   },
@@ -289,13 +298,20 @@ function ImagesLoader(images) {
     this.carousel.currentPath = this.images[this.carousel.current];
   },
   methods: {
+    handleLoading() {
+      return ImagesLoader(this.images).then(() => {
+        this.isLoaded = true;
+      });
+    },
     handleMouseUp() {
       this.mouse.isMoving = false;
       this.$emit('stopping', { position: this.carousel.current });
     },
     handleMouseLeave() {
-      this.mouse.isMoving = false;
-      this.$emit('stopping', { position: this.carousel.current });
+      if (this.mouse.isMoving) {
+        this.mouse.isMoving = false;
+        this.$emit('stopping', { position: this.carousel.current });
+      }
     },
     handleMouseDown(event) {
       if (!this.disabled) {
@@ -358,8 +374,24 @@ function ImagesLoader(images) {
     slideTo(position) {
       if (this.images[position]) {
         this.carousel.current = position;
-        this.carousel.currentPath = this.images[this.carousel.current];
+        this.carousel.currentPath = this.images[position === 0 ? position : position - 1];
       }
+    },
+  },
+  watch: {
+    images: {
+      handler() {
+        this.$emit('refreshing');
+        this.handleLoading().then(() => {
+          const positionExist = this.images[this.carousel.current];
+          if (this.keepPosition && positionExist) {
+            this.slideTo(this.carousel.current);
+          } else {
+            this.slideTo(0);
+          }
+          this.$emit('refreshed');
+        });
+      },
     },
   },
 });
