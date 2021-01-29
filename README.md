@@ -2,7 +2,7 @@
 
 Loop a series of images in a 360 rotatation carousel with this plugin for Vue.js
 
-🙋 Alpine.js user ? Check the plugin [Alpine Product 360](https://github.com/moveideas/alpine-product-360)
+### 🙋 Alpine.js user ? Check the plugin [Alpine Product 360](https://github.com/moveideas/alpine-product-360)
 
 ![Demo Screenshot](./public/demo-screenshot.gif)
 
